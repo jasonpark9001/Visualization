@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        path.link {
+            fill: none;
+            stroke: #999;
+            stroke-width: 1.5px;
+            opacity:0.9;
+        }
+        
+        g.node circle {
+            stroke: #333;
+            stroke-width: 1px;
+        }
+        g.node.pinned circle {
+            fill: #ffd400;
+            stroke: #b58900;
+            stroke-width: 2px;
+        }
+        
+        text.nlabel {
+            font-weight: 700;
+            font-size: 9px;
+            pointer-events: none;
+            dominant-baseline: hanging;
+        }
+        
+        text#credit {
+            font-size: 12px;
+            font-weight: 600;
+            fill: #444;
+        }
+            
+        body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+        svg  { background: #fafafa; display: block; margin: 0 auto; }
+    </style>
+    <meta charset="utf-8">
+    <title>Q2 — Force-Directed Board Games</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="../lib/d3.v5.min.js"></script>
+    <script>
+    
+    d3.dsv(",", "../data/relationships_min.csv", function(d) {
+      return {
+        source: d.source,
+        target: d.target,
+        value: +d.value
+      }
+    }).then(function(data) {
+    
+      var links = data;
+    
+      var nodes = {};
+    
+      // compute the distinct nodes from the links.
+      links.forEach(function(link) {
+          link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+          link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+      });
+    
+      var width = 1200,
+          height = 700;
+      
+      //scale of degree
+      Object.values(nodes).forEach(function(n){ n.degree = 0; });
+      links.forEach(function(l){ l.source.degree += 1; l.target.degree += 1; });
+        
+      var degExtent = d3.extent(Object.values(nodes), function(n){ return n.degree; });
+      if (degExtent[0] === degExtent[1]) degExtent = [degExtent[0], degExtent[0] + 1];
+        
+      var rScale = d3.scaleLinear().domain(degExtent).range([6, 18]); // avoid extremes
+      var colorInterp = d3.interpolateRgb("#e6f2ff", "#084594");
+      var colorScale  = d3.scaleLinear().domain(degExtent).range([0, 1]);
+      
+      //###### simulation
+      var simulation = d3.forceSimulation()
+          .nodes(d3.values(nodes))
+          .force("link", d3.forceLink(links).distance(100))
+          .force('center', d3.forceCenter(width / 2, height / 2))
+          .force("x", d3.forceX())
+          .force("y", d3.forceY())
+          .force("charge", d3.forceManyBody().strength(-250))
+          .alphaTarget(1)
+          .on("tick", tick);
+      //SVG
+      var svg = d3.select("body").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+        
+        //GT Username added 
+      svg.append("text")
+          .attr("id", "credit")
+          .attr("x", width - 10)
+          .attr("y", 18)
+          .attr("text-anchor", "end")
+          .text("JPARK3146");
+      // add the links
+      var path = svg.append("g")
+          .attr("class","links")
+          .selectAll("path")
+          .data(links)
+          .enter().append("path")
+          .attr("class","link")
+          .style("stroke", function(d){ return d.value === 1 ? "#2e8540" : "#777"; })
+          .style("stroke-width", function(d){ return d.value === 1 ? 1 : 3; })
+          .style("stroke-dasharray", function(d){ return d.value === 1 ? "4,4" : null; });
+          ;
+    
+      // define the nodes
+      var node = svg.selectAll("g.node")
+          .data(simulation.nodes())
+          .enter().append("g")
+          .attr("class", "node")
+          .call(
+              d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended)
+          )
+          .on("dblclick", unpin);
+    
+      // add the nodes
+      node.append("circle")
+          .attr("id", d => d.name.replace(/\W+/g, "").toLowerCase())
+          .attr("r",  d => rScale(d.degree))
+          .attr("fill", d => colorInterp(colorScale(d.degree)));
+
+      node.append("text")
+          .attr("class", "nlabel")
+          .attr("dx", function(d){ return rScale(d.degree) + 4; })
+          .attr("dy", -2)
+          .text(function(d){ return d.name; });
+
+        
+      // add the curvy lines
+      function tick() {
+          path.attr("d", function(d) {
+              var dx = d.target.x - d.source.x,
+                  dy = d.target.y - d.source.y,
+                  dr = Math.sqrt(dx * dx + dy * dy);
+              return "M" +
+                  d.source.x + "," +
+                  d.source.y + "A" +
+                  dr + "," + dr + " 0 0,1 " +
+                  d.target.x + "," +
+                  d.target.y;
+          });
+    
+          node.attr("transform", function(d) {
+              return "translate(" + d.x + "," + d.y + ")"; 
+          });
+      };
+    
+      function dragstarted(d) {
+          if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+          d.pinned = true;
+          d3.select(this).classed("pinned", true);
+          d3.select(this).select("circle").attr("fill", "#ffd400");
+      }
+    
+      function dragged(d) {
+          d.fx = d3.event.x;
+          d.fy = d3.event.y;
+      };
+    
+      function dragended(d) {
+          if (!d3.event.active) simulation.alphaTarget(0);
+          if (d.pinned) { d.fx = d.x; d.fy = d.y; }
+      }
+      function unpin(d) {
+          d.pinned = false;
+          d.fx = null; d.fy = null;
+          d3.select(this).classed("pinned", false);
+          d3.select(this).select("circle")
+            .attr("fill", colorInterp(colorScale(d.degree))); 
+      }
+      
+    }).catch(function(err){ console.error("Load error:", err); });
+    
+    </script>
+</body>
+</html>

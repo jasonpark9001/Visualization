@@ -1,0 +1,31 @@
+source,target,value
+Alice Johnson,Northwind Logistics,0
+Alice Johnson,Project Orion,0
+Bob Smith,Northwind Logistics,0
+Bob Smith,Harbor Terminal 7,1
+Carol Lee,Eagle Dynamics,0
+Carol Lee,Project Orion,1
+David Chen,Acme Chemicals,0
+Eagle Dynamics,Project Orion,0
+Northwind Logistics,Harbor Terminal 7,0
+Northwind Logistics,Warehouse 12,0
+Warehouse 12,Harbor Terminal 7,1
+City of Riverton,Harbor Terminal 7,0
+City of Riverton,Warehouse 12,0
+Acme Chemicals,Device ZX-13,0
+Device ZX-13,Project Orion,1
+Flight AA102,Harbor Terminal 7,1
+Flight AA102,City of Riverton,0
+Grace Patel,Project Orion,0
+Grace Patel,Eagle Dynamics,1
+Hector Ruiz,Northwind Logistics,1
+Hector Ruiz,Warehouse 12,0
+Ivy Park,Acme Chemicals,1
+Ivy Park,Device ZX-13,0
+Jamal Ortiz,City of Riverton,1
+Jamal Ortiz,Harbor Terminal 7,0
+Project Orion,Acme Chemicals,0
+Project Orion,Eagle Dynamics,0
+Project Orion,Northwind Logistics,1
+Security Camera 14,Warehouse 12,0
+Security Camera 14,Harbor Terminal 7,0

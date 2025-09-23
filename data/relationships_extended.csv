@@ -1,0 +1,31 @@
+source,target,relation,direction,confidence,value,evidence_count,doc_ids,first_seen,last_seen
+Alice Johnson,Northwind Logistics,employed_by,directed,0.92,0,3,RPT-102;RPT-119;RPT-143,2024-11-05,2025-02-14
+Alice Johnson,Project Orion,assigned_to,directed,0.81,0,2,RPT-201;RPT-219,2025-01-07,2025-03-02
+Bob Smith,Northwind Logistics,contractor_for,directed,0.76,0,1,RPT-155,2024-12-01,2024-12-01
+Bob Smith,Harbor Terminal 7,visited_location,directed,0.58,1,2,RPT-178;RPT-182,2025-02-10,2025-02-18
+Carol Lee,Eagle Dynamics,employed_by,directed,0.88,0,4,RPT-090;RPT-102;RPT-111;RPT-145,2024-10-22,2025-03-01
+Carol Lee,Project Orion,works_on,directed,0.62,1,1,RPT-205,2025-02-20,2025-02-20
+David Chen,Acme Chemicals,employed_by,directed,0.95,0,3,RPT-076;RPT-088;RPT-130,2024-09-19,2025-01-30
+Eagle Dynamics,Project Orion,partner_of,undirected,0.83,0,5,RPT-210;RPT-211;RPT-212;RPT-215;RPT-220,2025-02-01,2025-03-10
+Northwind Logistics,Harbor Terminal 7,operates_at,directed,0.89,0,6,RPT-060;RPT-061;RPT-062;RPT-098;RPT-120;RPT-190,2024-08-05,2025-03-05
+Northwind Logistics,Warehouse 12,operates_at,directed,0.91,0,4,RPT-063;RPT-121;RPT-122;RPT-191,2024-08-05,2025-03-06
+Warehouse 12,Harbor Terminal 7,transit_route,undirected,0.57,1,1,RPT-192,2025-03-07,2025-03-07
+City of Riverton,Harbor Terminal 7,within_jurisdiction,directed,0.97,0,3,RPT-010;RPT-011;RPT-012,2024-04-01,2025-01-15
+City of Riverton,Warehouse 12,within_jurisdiction,directed,0.97,0,3,RPT-010;RPT-011;RPT-012,2024-04-01,2025-01-15
+Acme Chemicals,Device ZX-13,manufactures,directed,0.93,0,2,RPT-301;RPT-335,2025-02-28,2025-03-12
+Device ZX-13,Project Orion,used_in,directed,0.61,1,1,RPT-340,2025-03-14,2025-03-14
+Flight AA102,Harbor Terminal 7,arrived_at,directed,0.54,1,1,RPT-410,2025-02-16,2025-02-16
+Flight AA102,City of Riverton,destination,directed,0.86,0,1,RPT-411,2025-02-16,2025-02-16
+Grace Patel,Project Orion,assigned_to,directed,0.9,0,2,RPT-221;RPT-222,2025-01-15,2025-03-03
+Grace Patel,Eagle Dynamics,seconded_to,directed,0.64,1,1,RPT-225,2025-02-02,2025-02-02
+Hector Ruiz,Northwind Logistics,affiliated_with,directed,0.59,1,1,RPT-230,2025-02-05,2025-02-05
+Hector Ruiz,Warehouse 12,visited_location,directed,0.84,0,2,RPT-240;RPT-241,2025-02-18,2025-02-20
+Ivy Park,Acme Chemicals,contractor_for,directed,0.63,1,1,RPT-260,2025-02-21,2025-02-21
+Ivy Park,Device ZX-13,worked_on,directed,0.91,0,2,RPT-262;RPT-270,2025-02-22,2025-03-01
+Jamal Ortiz,City of Riverton,resident_of,directed,0.55,1,1,RPT-280,2025-02-12,2025-02-12
+Jamal Ortiz,Harbor Terminal 7,visited_location,directed,0.88,0,1,RPT-285,2025-02-19,2025-02-19
+Project Orion,Acme Chemicals,partner_of,undirected,0.82,0,3,RPT-320;RPT-322;RPT-324,2025-02-10,2025-03-02
+Project Orion,Eagle Dynamics,partner_of,undirected,0.85,0,3,RPT-321;RPT-323;RPT-325,2025-02-10,2025-03-02
+Project Orion,Northwind Logistics,uses_services_of,directed,0.66,1,1,RPT-326,2025-03-03,2025-03-03
+Security Camera 14,Warehouse 12,recorded_at,directed,0.94,0,4,RPT-500;RPT-501;RPT-502;RPT-503,2024-12-10,2025-03-08
+Security Camera 14,Harbor Terminal 7,recorded_at,directed,0.92,0,3,RPT-504;RPT-505;RPT-506,2024-12-12,2025-03-09
