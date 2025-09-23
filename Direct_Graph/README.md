@@ -60,10 +60,10 @@ When opened in the browser, the force-directed layout produces a dynamic network
 ### Example Views
 
 Initial layout (nodes auto-positioned):  
-![Initial Graph Layout](images/initial.png)
+![Initial Graph Layout](../images/initial.png)
 
 After dragging/pinning `Project Orion`:  
-![Pinned Graph Layout](images/pinned.png)
+![Pinned Graph Layout](../images/pinned.png)
 
 In the example above:
 - `Project Orion`, `Northwind Logistics`, and `Harbor Terminal 7` appear as **larger, darker nodes** because they have more connections.

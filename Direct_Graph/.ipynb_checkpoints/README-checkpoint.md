@@ -14,7 +14,7 @@ This project demonstrates a **force-directed graph** built with [D3.js v5](https
    ```
 4. In your browser, go to:
    ```
-   http://localhost:8002/notebooks/Direct_Graph.html
+   http://localhost:8002/Direct_Graph/Direct_Graph.html
    ```
 
 If D3 is not pasted in yet, the page will display a yellow banner with instructions. Paste the full `d3.v5.min.js` into the HTML (as indicated in the file) to make it fully self-contained.
@@ -60,10 +60,10 @@ When opened in the browser, the force-directed layout produces a dynamic network
 ### Example Views
 
 Initial layout (nodes auto-positioned):  
-![Initial Graph Layout](caaa417c-6fcf-48a1-8d1a-1cbda1ee2cf9.png)
+![Initial Graph Layout](../images/initial.png)
 
 After dragging/pinning `Project Orion`:  
-![Pinned Graph Layout](61f8f094-03a9-4e45-ac01-b49d13130fee.png)
+![Pinned Graph Layout](../images/pinned.png)
 
 In the example above:
 - `Project Orion`, `Northwind Logistics`, and `Harbor Terminal 7` appear as **larger, darker nodes** because they have more connections.
