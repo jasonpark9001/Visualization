@@ -60,10 +60,10 @@ When opened in the browser, the force-directed layout produces a dynamic network
 ### Example Views
 
 Initial layout (nodes auto-positioned):  
-![Initial Graph Layout](../images/initial.png)
+![Initial Graph Layout](../images/initial_direct_graph.png)
 
 After dragging/pinning `Project Orion`:  
-![Pinned Graph Layout](../images/pinned.png)
+![Pinned Graph Layout](../images/pinned_direct_graph.png)
 
 In the example above:
 - `Project Orion`, `Northwind Logistics`, and `Harbor Terminal 7` appear as **larger, darker nodes** because they have more connections.
@@ -84,4 +84,4 @@ This visualization approach can be used in your NLP/NER + Relation Extraction wo
 ## Author
 
 Visualization adapted from CSE 6242 homework, extended for NLP relationship extraction.  
-Maintained by Jason Park (`JPARK3146`).
+Maintained by Jason W Park.
